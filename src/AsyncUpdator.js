@@ -9,15 +9,16 @@ function random() {
   });
 }
 
-function Box({ value }) {
+function Box({ value, label }) {
   return (
     <div className="box">
       <div> {value} </div>
+      {label ? <span>{label}</span> : undefined}
     </div>
   );
 }
 
-export default function () {
+function Content() {
   const [value, setValue] = useState(0);
 
   let [loading, setLoading] = useState(false);
@@ -36,12 +37,21 @@ export default function () {
   return (
     <>
       <div className="expression">
-        <Box value={count} />
+        <Box value={count} label="輸入" />
         <Box value="* 2" />
         <Box value="=" />
-        <Box value={loading ? "..." : value} />
+        <Box value={loading ? "..." : value} label="輸出" />
       </div>
-      <button onClick={handleClick}>click</button>
+      <button onClick={handleClick}>+ 1</button>
+    </>
+  );
+}
+
+export default function () {
+  return (
+    <>
+      <h5>請讓讓等式在所有狀況下保持正確</h5>
+      <Content />
     </>
   );
 }
