@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function random() {
   return new Promise((resolve) => {
@@ -13,17 +13,16 @@ function Box({ value, label }) {
   return (
     <div className="box">
       <div> {value} </div>
-      {label ? <span>{label}</span> : undefined}
+      {label && <span>{label}</span>}
     </div>
   );
 }
 
 function Content() {
   const [value, setValue] = useState(0);
-
-  let [loading, setLoading] = useState(false);
-  let [count, setCount] = useState(0);
-  let handleClick = () => {
+  const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState(0);
+  const handleClick = () => {
     setCount(count + 1);
     setLoading(true);
     random()
